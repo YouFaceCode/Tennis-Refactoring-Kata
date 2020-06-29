@@ -3,18 +3,16 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
-import java.util.*
 
 @RunWith(Parameterized::class)
 class TennisTest(private val player1Score: Int, private val player2Score: Int, private val expectedScore: String) {
 
     companion object {
-
         val allScores: Collection<Array<Any>>
             @JvmStatic
             @Parameters
             get() =
-                Arrays.asList(arrayOf(0, 0, "Love-All"),
+                listOf(arrayOf(0, 0, "Love-All"),
                         arrayOf(1, 1, "Fifteen-All"),
                         arrayOf(2, 2, "Thirty-All"),
                         arrayOf(3, 3, "Deuce"),
@@ -49,7 +47,7 @@ class TennisTest(private val player1Score: Int, private val player2Score: Int, p
                         arrayOf(14, 16, "Win for player2"))
     }
 
-    fun checkAllScores(game: TennisGame) {
+    private fun checkAllScores(game: TennisGame) {
         val highestScore = Math.max(this.player1Score, this.player2Score)
         for (i in 0 until highestScore) {
             if (i < this.player1Score)
